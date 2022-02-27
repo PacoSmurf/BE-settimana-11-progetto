@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/css/coloriindex.css}" />
+<title>Visualizza studenti</title>
+</head>
+<body>
+	<h1 style="color: green; font-size: 40px">Universita di Paco</h1>
+	<h2 style="color: purple; font-size: 30px">Visualizza studenti</h2>
+	<table>
+		<tr>
+			<th style="color: green; font-size: 15px">Matricola</th>
+			<th style="color: green; font-size: 15px">Nome</th>
+			<th style="color: green; font-size: 15px">Cognome</th>
+
+			<th style="color: green; font-size: 15px">Data di nascita</th>
+			<th style="color: green; font-size: 17px">Email</th>
+			<th style="color: green; font-size: 15px">Indirizzo</th>
+			<th style="color: green; font-size: 15px">Citta'</th>
+			<th style="color: green; font-size: 15px">Nome corso di laurea</th>
+
+			<th style="color: green; font-size: 15px">Codice corso di laurea</th>
+
+
+		</tr>
+
+
+
+		<div th:each="s : ${dummydb.getStudenti()}">
+			<tr>
+
+				<td th:text="${s.getMatricola()}"></td>
+				<td th:text="${s.getNome()}"></td>
+				<td th:text="${s.getCognome()}"></td>
+				<td th:text="${s.getDataNascita()}"></td>
+				<td th:text="${s.getEmail()}"></td>
+				<td th:text="${s.getIndirizzo()}"></td>
+				<td th:text="${s.getCitta()}"></td>
+				<td th:text="${s.getCorsoLaurea().getNome()}"></td>
+				<td th:text="${s.getCorsoLaurea().getCodice()}"></td>
+				<td><a
+					th:href="@{/mostraformaggiorna/{matricola}(matricola=${s.getMatricola()})}">Aggiorna</a></td>
+				<td><a
+					th:href="@{/eliminastudente/{matricola}(matricola=${s.getMatricola()})}"
+					onclick="return confirm('Sei sicuro di volerlo eliminare?')">Elimina</a></td>
+
+			</tr>
+		</div>
+	</table>
+
+	<form action="/mostraformaggiungi/{matricola}">
+		<button style="color: green; font-size: 15px" type="submit">aggiungi
+			studente</button>
+		
+	</form>
+	<a href="http://localhost:8080">Torna alla home</a>
+
+	<br>
+</body>
+<footer>
+	<p>creato da paco per universita paco &copy; 2022</p>
+</footer>
+</html>

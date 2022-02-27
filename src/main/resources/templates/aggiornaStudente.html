@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" th:href="@{/css/colori.css}" />
+<title>Aggiorna uno studente</title>
+</head>
+<body>
+	<h1>Universita di Paco</h1>
+	<h3>Inserisci i dati e aggiorna uno studente</h3>
+	<form action="#"
+		th:action="@{/aggiornaStudente/{matricola}(matricola=${studente.getMatricola()})}"
+		th:object="${studente}" method="POST">
+
+		<table>
+			<thead>
+				<tr>
+					<th>Matricola</th>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>Data di nascita</th>
+					<th>Email</th>
+					<th>Indirizzo</th>
+					<th>Città</th>
+					<th>Modifica corso di laurea</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="text" th:field="*{matricola}" id="nome"
+					th:disabled="${matricola != null}"
+						placeholder="Inserisci la tua matricola"></td>
+					<td><input type="text" th:field="*{nome}" id="nome"
+						placeholder="Modifica il tuo nome"></td>
+					<td><input type="text" th:field="*{cognome}" id="cognome"
+						placeholder="Modifica il tuo cognome"></td>
+					<td><input type="date" pattern="yyyy-MM-dd"
+						th:field="*{dataNascita}" id="dataNascita"
+						placeholder="Modifica la tua data di nascita"></td>
+					<td><input type="text" th:field="*{email}" id="email"
+						placeholder="Modifica la tua email"></td>
+					<td><input type="text" th:field="*{indirizzo}" id="indirizzo"
+						placeholder="Modifica il tuo indirizzo"></td>
+					<td><input type="text" th:field="*{citta}" id="citta"
+						placeholder="Modifica la tua città"></td>
+
+					<td><select th:field="*{corsoLaurea}">
+							<div th:each="c : ${corsi}">
+								<option th:text="${c.getNome}" th:value="${c.getCodice}"></option>
+							</div>
+					</select></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+		<input type="submit" value="Aggiorna studente">
+	</form>
+	<input type="button" value="Torna indietro" 
+onClick="history.go(-1);return true;" 
+name="button">
+<a href="http://localhost:8080"> Torna alla home</a>
+</body>
+<footer> <p>Creato da paco per Universita' paco &copy; 2022  </p></footer>
+</html>

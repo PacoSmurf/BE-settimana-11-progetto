@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/css/coloriindex.css}" />
+<title>Elenco Corsi</title>
+</head>
+<body>
+	<h1>Universita di Paco</h1>
+	<h3>Elenco Corsi</h3>
+
+	<table>
+		<tr>
+			<th style="color: green; font-size: 20px">Codice</th>
+			<th style="color: green; font-size: 20px">Nome</th>
+			<th style="color: green; font-size: 20px">Indirizzo</th>
+			<th style="color: green; font-size: 20px">N.Esami</th>
+			<th style="color: green; font-size: 20px">Aggiorna</th>
+			<th style="color: green; font-size: 20px">Elimina</th>
+		</tr>
+		<div th:each="corso: ${corsi}">
+			<tr>
+
+				<td th:text="${corso.codice}"></td>
+				<td th:text="${corso.nome}"></td>
+				<td th:text="${corso.indirizzo}"></td>
+				<td th:text="${corso.numeroEsami}"></td>
+				<td><a style="color: brown; font-size: 20px"
+					th:href="@{/aggiornaCorsoform/{codice}(codice=${corso.codice})}">Aggiorna</a></td>
+				<td><a style="color: orange; font-size: 20px"
+					th:href="@{/eliminacorso/{codice}(codice=${corso.codice})}"
+					onclick="return confirm('Sei sicuro di volerlo eliminare?')">Elimina</a></td>
+
+			</tr>
+		</div>
+	</table>
+
+	<a style="color: green; font-size: 20px" href="/aggiungiCorsoform">Aggiungi
+		Corso</a>
+	<br>
+	<a href="http://localhost:8080"> Torna alla home</a>
+	<hr>
+
+</body>
+<footer> <p>creato da paco per universita paco &copy; 2022  </p></footer>
+</html>

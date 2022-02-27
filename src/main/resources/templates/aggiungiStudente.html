@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/css/colori.css}" />
+<title>Aggiungi uno studente</title>
+</head>
+<body>
+	<form action="#" th:action="@{/aggiungiStudente}"
+		th:object="${studente}" method="POST">
+		<table>
+			<thead>
+				<tr>
+					<th>Matricola</th>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>Data di nascita</th>
+					<th>Email</th>
+					<th>Indirizzo</th>
+					<th>Città</th>
+					<th>Corso di laurea</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="text" th:field="*{matricola}" id="matricola"
+						placeholder="Inserisci la tua matricola"></td>
+					<td><input type="text" th:field="*{nome}" id="nome"
+						placeholder="Inserisci il tuo nome"></td>
+					<td><input type="text" th:field="*{cognome}" id="cognome"
+						placeholder="Inserisci il tuo cognome"></td>
+					<td><input type="date" pattern="yyyy-MM-dd"
+						th:field="*{dataNascita}" id="dataNascita"
+						placeholder="Inserisci la tua data di nascita"></td>
+					<td><input type="text" th:field="*{email}" id="email"
+						placeholder="Inserisci la tua email"></td>
+					<td><input type="text" th:field="*{indirizzo}" id="indirizzo"
+						placeholder="Inserisci il tuo indirizzo"></td>
+					<td><input type="text" th:field="*{citta}" id="citta"
+						placeholder="Inserisci la tua città"></td>
+
+					<td><select th:field="*{corsoLaurea}">
+							<div th:each="c : ${corsi}">
+								<option th:text="${c.nome}" th:value="${c.codice}"></option>
+							</div>
+					</select></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+		<input type="submit" value="Inserisci studente">
+	</form>
+	<a href="http://localhost:8080"> Torna alla home</a>
+</body>
+<footer> <p>creato da paco per universita paco &copy; 2022  </p></footer>
+</html>
